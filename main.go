@@ -26,7 +26,7 @@ func main() {
 		),
 		gocron.NewTask(
 			func(a string, b int) {
-				fmt.Printf("task1 %v,%v", a, b)
+				fmt.Printf("task1 %v,%v\n", a, b)
 			},
 			"hello",
 			1,
@@ -34,7 +34,7 @@ func main() {
 	)
 	if err != nil {
 		// handle error
-		fmt.Printf("task1 创建失败: %v", err)
+		fmt.Printf("task1 创建失败: %v\n", err)
 	}
 
 	// add a job to the scheduler
@@ -45,14 +45,14 @@ func main() {
 		),
 		gocron.NewTask(
 			func() {
-				fmt.Printf("task2")
+				fmt.Printf("task2\n")
 			},
 		),
 		gocron.WithSingletonMode(gocron.LimitModeWait), // 单一并发执行,排队等待  Single job, waiting in queue
 	)
 	if err != nil {
 		// handle error
-		fmt.Printf("task2 创建失败: %v", err)
+		fmt.Printf("task2 创建失败: %v\n", err)
 	}
 
 	// add a job to the scheduler
