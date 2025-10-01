@@ -48,7 +48,10 @@ func main() {
 				fmt.Printf("task2\n")
 			},
 		),
-		gocron.WithSingletonMode(gocron.LimitModeWait), // 单一并发执行,排队等待  Single job, waiting in queue
+		gocron.WithStartAt(gocron.WithStartImmediately()), // 启动时立即执行一次 Execute once immediately at startup
+		// gocron.LimitModeWait 单一并发执行,排队等待  Single job, waiting in queue
+		// gocron.LimitModeReschedule 单一并发执行,放弃跳过  Single job, give up skipping
+		gocron.WithSingletonMode(gocron.LimitModeWait),
 	)
 	if err != nil {
 		// handle error
